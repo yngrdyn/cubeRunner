@@ -3,20 +3,21 @@
 public class playerMovement : MonoBehaviour {
 
 	public Rigidbody rb;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public float forwardForce = 2000f;
+	public float sidewaysForce = 500f;
 
 	// Update applying physics
 	void FixedUpdate () {
 		// Multiplying value with the computer frame 
-		rb.AddForce (0, 0, 2000 * Time.deltaTime);
+		rb.AddForce (0, 0, forwardForce * Time.deltaTime);
+
+		if(Input.GetKey("d")){
+			rb.AddForce (sidewaysForce * Time.deltaTime, 0, 0);
+		}
+
+		if(Input.GetKey("a")){
+			rb.AddForce (-sidewaysForce * Time.deltaTime, 0, 0);
+		}
+
 	}
 }
